@@ -16,6 +16,8 @@ function App() {
   const [balance, setBalance] = useState<number>(100);
   const [market, setMarket] = useState<MarketInterface[]>([]);
 
+  const [win, setWin] = useState<boolean>(false);
+
   useEffect(() => {
     const array: Array<InventoryInterface> = [];
 
@@ -124,6 +126,16 @@ function App() {
       setMarket(ar);
     }, 5000);
   }, [market]);
+
+  useEffect(() => {
+    if(!win) {
+      if (balance - 100 >= 1000) {
+        alert("Ты выиграл");
+        setWin(true);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [balance])
 
   return (
     <Body>
