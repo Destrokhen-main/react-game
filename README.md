@@ -1,3 +1,10 @@
+# Инфо 
+
+проект тестовый. Тренировал то, что прочитал по реакту.
+стек `type-script`
+
+# Описание реакта
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
