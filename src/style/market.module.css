@@ -1,0 +1,22 @@
+.block {
+  height: 500px;
+  width: 100%;
+  outline: 1px solid black;
+}
+
+.name {
+  font-size: 18px;
+  padding: 5px 1px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.blockStat {
+  padding: 20px 0;
+  border-bottom: 1px dotted grey;
+}
+
+.blockStat__span {
+  color: green;
+  padding: 0px 10px;
+}

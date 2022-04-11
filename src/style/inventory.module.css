@@ -1,0 +1,17 @@
+.body {
+  width:100%;
+  height: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.itemInvent {
+  width: 97.6px;
+  height: 97.6px;
+  outline: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  cursor: pointer;
+}

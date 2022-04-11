@@ -1,0 +1,17 @@
+.window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block {
+  width: 1200px;
+  height: 100%;
+  background-color:beige;
+}
+
+@media screen and (max-width: 1200px) {
+  .block {
+    width: 100%;
+  }
+}
