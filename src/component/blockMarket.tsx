@@ -5,14 +5,21 @@ function Marker(props: any) {
     width: "10%",
   }
   const styleGreen = {
-    color: "green"
+    color: "green",
+    width: 10,
   }
 
   const styleRed = {
     color: "red",
+    width: 10,
   }
 
-  const empty = {}
+  const empty = {
+    width: 10,
+  }
+
+  const table: number[] = Array(10).fill(0);
+
   return (
     <div className={s.block}>
       <div className="container">
@@ -47,21 +54,20 @@ function Marker(props: any) {
                       </span>
                     </td>
                     {
-                      o.history.map((e: any, i : number) => {
-                          return (
-                            <td
-                              style={
-                                (i !== 0
-                                  ? e > o.history[i-1] ? styleGreen : styleRed
-                                  : empty
-                                )
-                              }
-                            >
-                              {e}
-                            </td>
-                          )
-                        }
-                      )
+                      table.map((e, i) => {
+                        return (
+                          <td
+                            style={
+                              (i !== 0
+                                ? o.history[i] > o.history[i-1] ? styleGreen : styleRed
+                                : empty
+                              )
+                            }
+                          >
+                            {o.history[i] !== undefined ? o.history[i] : "-"}
+                          </td>
+                        )
+                      })
                     }
                   </tr>
                 )

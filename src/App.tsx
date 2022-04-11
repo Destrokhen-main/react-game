@@ -6,12 +6,18 @@ import Market from "./component/blockMarket";
 
 import {InventoryInterface, MarketInterface} from "./type";
 
-const random = (min: number, max: number) => {
+const random = (min: number, max: number) : number => {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
 
 function App() {
+  interface product {
+    name : string;
+    price: number,
+  }
+
+
   const [inventory, setInventory] = useState<InventoryInterface[]>([]);
   const [balance, setBalance] = useState<number>(100);
   const [market, setMarket] = useState<MarketInterface[]>([]);
@@ -32,15 +38,44 @@ function App() {
 
     setInventory(array);
 
-    const itemAr: Array<string> = ["Хлеб","Масло","Сахар","Гречка","Соус","Хуй"];
+    const itemAr: Array<product> = [
+      {
+        name: "Хлеб",
+        price: 35,
+      },
+      {
+        name: "Масло",
+        price: 120,
+      },
+      {
+        name: "Сахар",
+        price: 25,
+      },
+      {
+        name: "Гречка",
+        price: 30
+      },
+      {
+        name: "Соус",
+        price: -1
+      },
+      {
+        name: "Золото",
+        price: 150
+      },
+      {
+        name: "Машина",
+        price: 200,
+      }
+    ];
 
     const ar: Array<MarketInterface> = [];
 
     for (let i = 0; i !== itemAr.length; i++) {
-      const firstPrice = random(1,100);
+      const firstPrice : number = itemAr[i].price !== -1 ? itemAr[i].price : random(1,100);
       ar.push({
         id: i,
-        name: itemAr[i],
+        name: itemAr[i].name,
         price: firstPrice,
         history: [firstPrice],
       });
@@ -59,6 +94,7 @@ function App() {
       for(let i = 0; i !== array.length; i++) {
         if (array[i].name === e.name) {
           array[i].count += 1;
+          array[i].price = e.price;
           check = true;
           break;
         } else if (array[i].name === null) {
@@ -75,7 +111,7 @@ function App() {
         setInventory(array);
       }
     } else {
-      alert("Нехватает денег");
+      alert("No money gay!");
     }
   }
 
