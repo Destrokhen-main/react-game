@@ -4,18 +4,20 @@ import Body from "./component/body";
 import Inventory from './component/inventory';
 import Market from "./component/blockMarket";
 
+import {InventoryInterface, MarketInterface} from "./type";
+
 const random = (min: number, max: number) => {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
 
 function App() {
-  const [inventory, setInventory] = useState<Object[]>([]);
+  const [inventory, setInventory] = useState<InventoryInterface[]>([]);
   const [balance, setBalance] = useState<number>(100);
-  const [market, setMarket] = useState<Object[]>([]);
+  const [market, setMarket] = useState<MarketInterface[]>([]);
 
   useEffect(() => {
-    const array: Array<Object> = [];
+    const array: Array<InventoryInterface> = [];
 
     for (let i = 0; i !== 18; i++) {
       array.push({
@@ -30,7 +32,7 @@ function App() {
 
     const itemAr: Array<string> = ["Хлеб","Масло","Сахар","Гречка","Соус","Хуй"];
 
-    const ar: Array<Object> = [];
+    const ar: Array<MarketInterface> = [];
 
     for (let i = 0; i !== itemAr.length; i++) {
       const firstPrice = random(1,100);
@@ -45,10 +47,11 @@ function App() {
     setMarket(ar);
   }, []);
 
-  const BuyItem = (e: any) => {
-    const oldPrice: any = balance;
+  const BuyItem = (e: MarketInterface) => {
+    const oldPrice: number = balance;
     const price: number = e.price;
-    const array: Array<any> = inventory;
+    const array: Array<InventoryInterface> = inventory;
+
     if (oldPrice - price >= 0) {
       let check = false;
       for(let i = 0; i !== array.length; i++) {
@@ -74,8 +77,8 @@ function App() {
     }
   }
 
-  const Sell = (e: any) => {
-    const invent: Array<any> = inventory;
+  const Sell = (e: InventoryInterface) => {
+    const invent: Array<InventoryInterface> = inventory;
     let bal : number = balance;
 
     const index = invent.findIndex((j) => j.id === e.id);
